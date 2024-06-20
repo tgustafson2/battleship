@@ -1,0 +1,11 @@
+{
+  "extends": ["eslint:recommended", "google", "prettier"],
+  "overrides": [
+    {
+      "files": ["tests/**/*"],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
+}
