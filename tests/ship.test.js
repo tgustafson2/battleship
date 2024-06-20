@@ -1,8 +1,9 @@
+import { createShip } from "../src/ship";
+
 describe("tests ship behavior", () => {
-  let ship = new Ship(4);
+  let ship = createShip(4);
   test("should hit the ship", () => {
-    ship.hit();
-    expect(ship.hits).toBe(1);
+    expect(ship.hit()).toBe(1);
   });
 
   test("should show the ship is not sunk", () => {
