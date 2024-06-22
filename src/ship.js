@@ -8,7 +8,7 @@ function createShip(shipLength) {
   let isSunk = () => {
     return hits === length;
   };
-  return { hit, isSunk };
+  return { hit, isSunk, length };
 }
 
 module.exports = {

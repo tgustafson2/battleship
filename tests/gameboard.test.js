@@ -1,19 +1,21 @@
+const { createGameboard } = require("../src/gameboard");
 const { createShip } = require("../src/ship");
 
 describe("tests gameboard behavior", () => {
   let ship = createShip(2);
   let gameboard = createGameboard();
+  gameboard.placeShip(0, 0, 0, 1, ship);
   test("should receive attack and miss", () => {
-    expect(gameboard.receiveAttack(0, 0)).toBeFalsy();
+    expect(gameboard.receiveAttack(1, 0)).toBeFalsy();
   });
   test("should receive attack and hit", () => {
-    gameboard.placeShip(0, 0, 0, 2);
+    
     expect(gameboard.receiveAttack(0, 0)).toBeTruthy();
   });
   test("should keep track of shots", () => {
     expect(gameboard.board).toEqual([
-      [ship, ship, "", "", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", "", "", "", ""],
+      ["hit", ship, "", "", "", "", "", "", "", ""],
+      ["miss", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
       ["", "", "", "", "", "", "", "", "", ""],
