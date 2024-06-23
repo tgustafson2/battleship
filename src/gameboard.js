@@ -20,15 +20,26 @@ function createGameboard() {
       return false;
     }
     if (startRow != endRow) {
+      for (let i = startRow; i <= endRow; i++) {
+        if(board[i][startCol]!==""){
+          return false;
+        }
+      }
       for (; startRow <= endRow; startRow++) {
         board[startRow][startCol] = ship;
       }
     } else {
+      for (let i = startCol; i <= endCol; i++) {
+        if(board[startRow][i]!==""){
+          return false;
+        }
+      }
       for (; startCol <= endCol; startCol++) {
         board[startRow][startCol] = ship;
       }
     }
     ships.push(ship);
+    return true;
   }
 
   function allShipsSunk() {
