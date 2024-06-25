@@ -1,5 +1,6 @@
 const { createGameboard } = require("../src/gameboard");
-
+const { createPlayer, createComputerPlayer } = require("../src/player");
+const { createShip } = require("../src/ship");
 describe("tests player behavior", () => {
   describe("tests base player behavior", () => {
     let gameboard = createGameboard();
@@ -19,7 +20,7 @@ describe("tests player behavior", () => {
       ]);
     });
     test("should output if player has not lost yet", () => {
-      player.gameboard.placeShipe(0, 0, 0, 1, createShip(2));
+      player.gameboard.placeShip(0, 0, 0, 1, createShip(2));
       expect(player.hasLost()).toBeFalsy();
     });
     test("should output if player has lost", () => {
@@ -30,20 +31,27 @@ describe("tests player behavior", () => {
   });
   describe("tests computer player behavior", () => {
     let gameboard = createGameboard();
-    let computer = new createComputerPlayer(gameboard);
+    let ships = [
+      createShip(5),
+      createShip(4),
+      createShip(3),
+      createShip(3),
+      createShip(2),
+    ];
+    let computer = new createComputerPlayer(gameboard, ships);
     test("should auto place ships", () => {
-        expect(computer.gameboard.board).not.toEqual([
-            ["", "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", "", ""],
-            ["", "", "", "", "", "", "", "", "", ""],
-          ]);
+      expect(computer.gameboard.board).not.toEqual([
+        ["", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", ""],
+      ]);
     });
     test("should auto attack", () => {
       expect(computer.attack()).toBeTruthy();
