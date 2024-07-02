@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battleship Game</title>
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="setup-container">
+        <h2>Place Your Ships</h2>
+        <div class="ships-container">
+          <div class="ship" draggable="true" data-length="5"></div>
+          <div class="ship" draggable="true" data-length="4"></div>
+          <div class="ship" draggable="true" data-length="3"></div>
+          <div class="ship" draggable="true" data-length="3"></div>
+          <div class="ship" draggable="true" data-length="2"></div>
+        </div>
+      </div>
+      <div id="game-result">
+        <h2></h2>
+      </div>
+
+      <div class="game-board-container">
+        <h2>Battlefield</h2>
+        <div class="board-container">
+          <h3>User Board</h3>
+          <div class="board-labels">
+            <div></div>
+            <div>A</div>
+            <div>B</div>
+            <div>C</div>
+            <div>D</div>
+            <div>E</div>
+            <div>F</div>
+            <div>G</div>
+            <div>H</div>
+            <div>I</div>
+            <div>J</div>
+          </div>
+          <div class="board-wrapper">
+            <div class="row-labels">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+              <div>4</div>
+              <div>5</div>
+              <div>6</div>
+              <div>7</div>
+              <div>8</div>
+              <div>9</div>
+              <div>10</div>
+            </div>
+            <div class="board" id="user-board"></div>
+          </div>
+        </div>
+        <div class="board-container">
+          <h3>Computer Board</h3>
+          <div class="board-labels">
+            <div></div>
+            <div>A</div>
+            <div>B</div>
+            <div>C</div>
+            <div>D</div>
+            <div>E</div>
+            <div>F</div>
+            <div>G</div>
+            <div>H</div>
+            <div>I</div>
+            <div>J</div>
+          </div>
+          <div class="board-wrapper">
+            <div class="row-labels">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+              <div>4</div>
+              <div>5</div>
+              <div>6</div>
+              <div>7</div>
+              <div>8</div>
+              <div>9</div>
+              <div>10</div>
+            </div>
+            <div class="board" id="computer-board"></div>
+          </div>
+        </div>
+      </div>
+
+      <button id="new-game-button">New Game</button>
+    </div>
+
+  <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></body>
+</html>
