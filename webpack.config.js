@@ -25,17 +25,13 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg)$/i,
         type: "asset/resource",
       },
       {
         test: /\.jsx?$/,
         exclude: [path.resolve(__dirname, "node_modules")],
         use: ["babel-loader"],
-      },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.gif$/,
@@ -68,5 +64,4 @@ module.exports = {
   optimization: {
     runtimeChunk: "single",
   },
-  
 };

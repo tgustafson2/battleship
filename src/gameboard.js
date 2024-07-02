@@ -12,8 +12,8 @@ function createGameboard() {
 
   function placeShip(startRow, endRow, startCol, endCol, ship) {
     if (
-      Math.abs(startRow - endRow) >= ship.length ||
-      Math.abs(startCol - endCol) >= ship.length ||
+      (Math.abs(startRow - endRow) + 1 != ship.length &&
+        Math.abs(startCol - endCol) + 1 != ship.length) ||
       (startRow == endRow && startCol == endCol) ||
       (startRow != endRow && startCol != endCol)
     ) {
@@ -21,7 +21,7 @@ function createGameboard() {
     }
     if (startRow != endRow) {
       for (let i = startRow; i <= endRow; i++) {
-        if(board[i][startCol]!==""){
+        if (board[i][startCol] !== "") {
           return false;
         }
       }
@@ -30,7 +30,7 @@ function createGameboard() {
       }
     } else {
       for (let i = startCol; i <= endCol; i++) {
-        if(board[startRow][i]!==""){
+        if (board[startRow][i] !== "") {
           return false;
         }
       }
@@ -56,6 +56,7 @@ function createGameboard() {
     if (typeof board[row][col] !== "object") {
       if (board[row][col] === "") {
         board[row][col] = "miss";
+        return true;
       }
       return false;
     }
