@@ -5,24 +5,25 @@ import { createShip } from "./ship";
 
 const userBoard = document.querySelector("#user-board");
 const computerBoard = document.querySelector("#computer-board");
-const shipPlacementForm = document.querySelector("#ship-placement-form");
 const newGameButton = document.querySelector("#new-game-button");
 
 let userGameBoard, computerGameBoard, userPlayer, computerPlayer;
+let selectedShip = null;
+let isHorizontal = true;
 
 const initializeGame = () => {
   userGameBoard = createGameboard();
   computerGameBoard = createGameboard();
   userPlayer = createPlayer(userGameBoard);
-  computerPlayer = createComputerPlayer(
-    computerGameBoard,
-    createComputerShips(),
-  );
+  computerPlayer = createComputerPlayer(computerGameBoard, createComputerShips());
 
   generateBoard(userBoard, "user-board");
   generateBoard(computerBoard, "computer-board", handleCellClick);
   document.querySelector(".setup-container").style.display = "block";
   document.querySelector("#game-result").style.display = "none";
+  document.querySelectorAll(".ship").forEach(ship =>{
+    ship.style.display = "flex";
+  })
 };
 
 const createComputerShips = () => {
@@ -43,14 +44,41 @@ const generateBoard = (boardElement, boardType, clickHandler) => {
       if (clickHandler && boardType === "computer-board") {
         cell.addEventListener("click", () => clickHandler(i, j));
       }
+      cell.addEventListener("dragover", (event) => event.preventDefault());
+      cell.addEventListener("drop", (event) => handleDrop(event, i, j));
       boardElement.appendChild(cell);
     }
+  }
+};
+
+const handleDrop = (event, row, col) => {
+  event.preventDefault();
+  if (!selectedShip) return;
+
+  const length = parseInt(selectedShip.dataset.length, 10);
+  const endRow = isHorizontal ? row : row + length - 1;
+  const endCol = isHorizontal ? col + length - 1 : col;
+
+  const ship = createShip(length);
+  if (userGameBoard.placeShip(row, endRow, col, endCol, ship)) {
+    updateBoard(userBoard, userGameBoard.board);
+    selectedShip.style.display = "none";
+    selectedShip = null;
+  } else {
+    alert("Invalid ship placement");
   }
 };
 
 const handleCellClick = (row, col) => {
   if (userPlayer.hasLost() || computerPlayer.hasLost()) {
     return;
+  }
+  let ships = document.querySelectorAll(".ship");
+  console.log(ships);
+  for(let i=0; i<5; i++){
+    if(ships[i].style.display !== "none"){
+        return;
+    }
   }
 
   if (!computerGameBoard.receiveAttack(row, col)) {
@@ -97,30 +125,25 @@ const updateBoard = (boardElement, board) => {
   }
 };
 
-shipPlacementForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+document.querySelectorAll(".ship").forEach((ship) => {
+  ship.style.setProperty('--length', ship.dataset.length);
+  ship.classList.add("horizontal");
 
-  const formData = new FormData(shipPlacementForm);
-  for (let i = 1; i <= 5; i++) {
-    const startRow = parseInt(formData.get(`ship${i}-start-row`), 10);
-    const endRow = parseInt(formData.get(`ship${i}-end-row`), 10);
-    const startCol = parseInt(formData.get(`ship${i}-start-col`), 10);
-    const endCol = parseInt(formData.get(`ship${i}-end-col`), 10);
+  ship.addEventListener("dragstart", (event) => {
+    selectedShip = event.target;
+  });
 
-    const shipLength =
-      Math.abs(startRow - endRow) + 1 || Math.abs(startCol - endCol) + 1;
-    const ship = createShip(shipLength);
-
-    if (!userGameBoard.placeShip(startRow, endRow, startCol, endCol, ship)) {
-      alert("Invalid ship placement");
-      return;
+  ship.addEventListener("click", (event) => {
+    if (ship.classList.contains("horizontal")) {
+      ship.classList.remove("horizontal");
+      ship.classList.add("vertical");
+      isHorizontal = false;
+    } else {
+      ship.classList.remove("vertical");
+      ship.classList.add("horizontal");
+      isHorizontal = true;
     }
-    document.querySelector(".setup-container").style.display = "none";
-  }
-
-  // Ships placed, update the boards to reflect initial state
-  updateBoard(userBoard, userGameBoard.board);
-  updateBoard(computerBoard, computerGameBoard.board);
+  });
 });
 
 newGameButton.addEventListener("click", initializeGame);

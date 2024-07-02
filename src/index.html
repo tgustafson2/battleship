@@ -9,159 +9,13 @@
     <div class="game-container">
       <div class="setup-container">
         <h2>Place Your Ships</h2>
-        <form id="ship-placement-form">
-          <div class="input-container">
-            <label for="ship1-start-row">Ship 1 Start Row:</label>
-            <input
-              type="text"
-              id="ship1-start-row"
-              name="ship1-start-row"
-              placeholder="row"
-            />
-            <label for="ship1-end-row">End Row:</label>
-            <input
-              type="text"
-              id="ship1-end-row"
-              name="ship1-end-row"
-              placeholder="row"
-            />
-            <label for="ship1-start-col">Start Col:</label>
-            <input
-              type="text"
-              id="ship1-start-col"
-              name="ship1-start-col"
-              placeholder="col"
-            />
-            <label for="ship1-end-col">End Col:</label>
-            <input
-              type="text"
-              id="ship1-end-col"
-              name="ship1-end-col"
-              placeholder="col"
-            />
-          </div>
-          <div class="input-container">
-            <label for="ship2-start-row">Ship 2 Start Row:</label>
-            <input
-              type="text"
-              id="ship2-start-row"
-              name="ship2-start-row"
-              placeholder="row"
-            />
-            <label for="ship2-end-row">End Row:</label>
-            <input
-              type="text"
-              id="ship2-end-row"
-              name="ship2-end-row"
-              placeholder="row"
-            />
-            <label for="ship2-start-col">Start Col:</label>
-            <input
-              type="text"
-              id="ship2-start-col"
-              name="ship2-start-col"
-              placeholder="col"
-            />
-            <label for="ship2-end-col">End Col:</label>
-            <input
-              type="text"
-              id="ship2-end-col"
-              name="ship2-end-col"
-              placeholder="col"
-            />
-          </div>
-          <div class="input-container">
-            <label for="ship3-start-row">Ship 3 Start Row:</label>
-            <input
-              type="text"
-              id="ship3-start-row"
-              name="ship3-start-row"
-              placeholder="row"
-            />
-            <label for="ship3-end-row">End Row:</label>
-            <input
-              type="text"
-              id="ship3-end-row"
-              name="ship3-end-row"
-              placeholder="row"
-            />
-            <label for="ship3-start-col">Start Col:</label>
-            <input
-              type="text"
-              id="ship3-start-col"
-              name="ship3-start-col"
-              placeholder="col"
-            />
-            <label for="ship3-end-col">End Col:</label>
-            <input
-              type="text"
-              id="ship3-end-col"
-              name="ship3-end-col"
-              placeholder="col"
-            />
-          </div>
-          <div class="input-container">
-            <label for="ship4-start-row">Ship 4 Start Row:</label>
-            <input
-              type="text"
-              id="ship4-start-row"
-              name="ship4-start-row"
-              placeholder="row"
-            />
-            <label for="ship4-end-row">End Row:</label>
-            <input
-              type="text"
-              id="ship4-end-row"
-              name="ship4-end-row"
-              placeholder="row"
-            />
-            <label for="ship4-start-col">Start Col:</label>
-            <input
-              type="text"
-              id="ship4-start-col"
-              name="ship4-start-col"
-              placeholder="col"
-            />
-            <label for="ship4-end-col">End Col:</label>
-            <input
-              type="text"
-              id="ship4-end-col"
-              name="ship4-end-col"
-              placeholder="col"
-            />
-          </div>
-          <div class="input-container">
-            <label for="ship5-start-row">Ship 5 Start Row:</label>
-            <input
-              type="text"
-              id="ship5-start-row"
-              name="ship5-start-row"
-              placeholder="row"
-            />
-            <label for="ship5-end-row">End Row:</label>
-            <input
-              type="text"
-              id="ship5-end-row"
-              name="ship5-end-row"
-              placeholder="row"
-            />
-            <label for="ship5-start-col">Start Col:</label>
-            <input
-              type="text"
-              id="ship5-start-col"
-              name="ship5-start-col"
-              placeholder="col"
-            />
-            <label for="ship5-end-col">End Col:</label>
-            <input
-              type="text"
-              id="ship5-end-col"
-              name="ship5-end-col"
-              placeholder="col"
-            />
-          </div>
-          <button type="submit">Start Game</button>
-        </form>
+        <div class="ships-container">
+          <div class="ship" draggable="true" data-length="5"></div>
+          <div class="ship" draggable="true" data-length="4"></div>
+          <div class="ship" draggable="true" data-length="3"></div>
+          <div class="ship" draggable="true" data-length="3"></div>
+          <div class="ship" draggable="true" data-length="2"></div>
+        </div>
       </div>
       <div id="game-result">
         <h2></h2>
@@ -235,5 +89,6 @@
 
       <button id="new-game-button">New Game</button>
     </div>
+
   </body>
 </html>

@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -20,6 +21,32 @@ body {
 
 .setup-container {
   margin-bottom: 20px;
+}
+
+.ships-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ship {
+  background-color: #ddd;
+  padding: 5px;
+  border: 1px solid #000;
+  cursor: grab;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ship.vertical {
+  width: 30px;
+  height: calc(30px * var(--length));
+}
+
+.ship.horizontal {
+  height: 30px;
+  width: calc(30px * var(--length));
 }
 
 .input-container {
